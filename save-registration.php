@@ -20,7 +20,7 @@ try {
 	
 	if ($password == $confirm_password) {
 		$result = User::register($first_name, $middle_name, $last_name, $email, 
-		$password, $confirm_password, $birthdate, $gender, $address, $contact_number);
+		$password, $birthdate, $gender, $address, $contact_number);
 
 	  
 		if ($result) {
@@ -31,12 +31,7 @@ try {
 			$_SESSION['user'] = [
 				'id' => $result,
 				'fullname' => $first_name . ' ' . $middle_name . ' ' . $last_name,
-				'email' => $email,
-				'password' => $password,
-				'confirm_password' => $confirm_password,
-				'gender' => $gender,
-				'address' => $address,
-				'contact_number' => $contact_number
+				'email' => $email
 			];
 			header('Location: index.php');
 		}

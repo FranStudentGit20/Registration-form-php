@@ -54,59 +54,59 @@
 
 <body>
 <h1>Register a User</h1>
-<form action="save-registration.php" method="POST">
+	<form action="save-registration.php" method="POST">
 
-	<div>
-		<label>First Name:</label>
-		<input type="text" name="first_name" placeholder="First Name" />	
-	</div><br>
-	<div>
-		<label>Middle Name:</label>
-		<input type="text" name="middle_name" placeholder="Middle Name" />	
-	</div><br>
-	<div>
-		<label>Last Name:</label>
-		<input type="text" name="last_name" placeholder="Last Name" />	
-	</div><br>
-	<div>
-		<label>Email Address:</label>
-		<input type="email" name="email" placeholder="email" />	
-	</div><br>
-	<div>
-		<label>Password:</label>
-		<input type="password" name="password" placeholder="Password" />	
-	</div><br>
-	<div>
-		<label>Confirm Password:</label>
-		<input type="password" name="confirm_password" placeholder="Confirm Password" />	
-	</div><br>
-	<div>
-		<label>Birthdate:</label>
-		<input type="date" name="birthdate"  placeholder= "Birthdate"/>	
-	</div><br>
-	<div>
-		<label>Gender:</label>
-		<select id = "gender">
-			<option label = "male">Male</option>
-			<option label = "female">Female</option>
-			<option label = "other">Other</option>
-		</select>
-	</div><br>
-	<div>
-		<label>Address:</label>
-		<input type="text" name="address"  placeholder= "Address"/>	
-	</div><br>
-	<div>
-		<label>Contact Number:</label>
-		<input type="text" name="contact_number"  placeholder= "Contact Number"/>	
-	</div><br>
-	<div>
-		<button>
-			Register User
-		</button><br>
-		<button onClick="window.location.href='login.php'">Cancel</button><br>
-	</div>
-</form>
+		<div>
+			<label for="first_name">First Name:</label>
+			<input type="text" name="first_name" id="first_name" />	
+		</div><br>
+		<div>
+			<label for="middle_name">Middle Name:</label>
+			<input type="text" name="middle_name" id="middle_name" />	
+		</div><br>
+		<div>
+			<label for="last_name">Last Name:</label>
+			<input type="text" name="last_name" id="last_name" />	
+		</div><br>
+		<div>
+			<label for="email">Email Address:</label>
+			<input type="email" name="email" id="email" />	
+		</div><br>
+		<div>
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" />	
+		</div><br>
+		<div>
+			<label for="confirm_password">Confirm Password:</label>
+			<input type="password" name="confirm_password" id="confirm_password" />	
+		</div><br>
+		<div>
+			<label for="birthdate">Birthdate:</label>
+			<input type="date" name="birthdate"  id= "birthdate"/>	
+		</div><br>
+		<div>
+			<label for="gender">Gender:</label>
+			<select id = "gender" name="gender">
+				<option label = "male">Male</option>
+				<option label = "female">Female</option>
+				<option label = "other">Other</option>
+			</select>
+		</div><br>
+		<div>
+			<label for="address">Address:</label>
+			<input type="text" name="address"  id="address"/>	
+		</div><br>
+		<div>
+			<label for="contact_number">Contact Number:</label>
+			<input type="text" name="contact_number"  id="contact_number"/>	
+		</div><br>
+		<div>
+			<button>
+				Register User
+			</button><br>
+			<button onClick="window.location.href='login.php'">Cancel</button><br>
+		</div>
+	</form>
 
 </body>
 </html>

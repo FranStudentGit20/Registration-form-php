@@ -126,7 +126,7 @@ $user = User::getById($_SESSION['user']['id']);
             <td>Birthdate</td>
             <td>
                 <strong>
-                    <?php echo $user->getBirthDate();?>
+                    <?php echo $user->getBirthdate();?>
                 </strong>
             </td>
         </tr>

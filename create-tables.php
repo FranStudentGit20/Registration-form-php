@@ -5,18 +5,19 @@ require "config.php";
 try {
 	$sql_users = "
 		CREATE TABLE IF NOT EXISTS users (
-			id INT AUTO_INCREMENT PRIMARY KEY,
+			id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 			first_name VARCHAR(50) NOT NULL,
 			middle_name VARCHAR(50) NOT NULL,
 			last_name VARCHAR(50) NOT NULL,
 			email VARCHAR(100) NOT NULL,
-			pass VARCHAR(500) NOT NULL,
+			password VARCHAR(500) NOT NULL,
 			birthdate DATE,
 			gender VARCHAR(20),
 			address VARCHAR(300),
 			contact_number VARCHAR(30),
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 		);
+
 	";
 	$conn->exec($sql_users);
 	echo "<li>Created users table";

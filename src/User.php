@@ -12,11 +12,12 @@ class User
 	protected $last_name;
 	protected $email;
 	protected $pass;
+	protected $created_at;
 	protected $birthdate;
 	protected $gender;
 	protected $address;
 	protected $contact_number;
-	protected $created_at;
+
 
 	public function getId()
 	{
@@ -48,7 +49,7 @@ class User
 		return $this->email;
 	}
 
-	public function getBirthDate()
+	public function getBirthdate()
 	{
 		return $this->birthdate;
 	}
@@ -102,20 +103,25 @@ class User
 		global $conn;
 
 		try {
+			$stmt = $conn->query("SELECT password FROM users WHERE email='".$email."' LIMIT 1");
+			while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+				if (password_verify($pass, $row[0])) {
 			$sql = "
 				SELECT * FROM users
 				WHERE email=:email
-					AND pass=:pass
 				LIMIT 1
-			";
-			$statement = $conn->prepare($sql);
+					";
+					$statement = $conn->prepare($sql);
 
-			$statement->execute([
-				'email' => $email,
-				'pass' => $pass
-			]);
-			$result = $statement->fetchObject('App\User');
-			return $result;
+					$statement->execute([
+						'email' => $email,
+					]);
+					$result = $statement->fetchObject('App\User');
+					return $result;
+				}else{
+					return null;
+				}
+			}
 		} catch (PDOException $e) {
 			error_log($e->getMessage());
 		}
@@ -123,8 +129,7 @@ class User
 		return null;
 	}
 
-	public static function register($first_name, $middle_name, $last_name, $email, $password,
-	$birthdate, $gender, $address, $contact_number)
+	public static function register($first_name, $middle_name, $last_name, $email, $password, $birthdate, $gender, $address, $contact_number)
 	{
 		global $conn;
 
@@ -133,9 +138,8 @@ class User
 			$password = $class -> hashPassword($password);
 
 			$sql = "
-				INSERT INTO users (first_name, middle_name, last_name, email, pass, birthdate, gender, address, contact_number)
-				VALUES ('$first_name', '$middle_name', '$last_name', '$email', '$password', '$birthdate', 
-				'$gender', '$address', '$contact_number')
+				INSERT INTO users (first_name, middle_name, last_name, email, password, birthdate, gender, address, contact_number)
+				VALUES ('$first_name', '$middle_name', '$last_name', '$email', '$password', '$birthdate', '$gender', '$address', '$contact_number')
 			";
 			$conn->exec($sql);
 			// echo "<li>Executed SQL query " . $sql;
@@ -159,15 +163,15 @@ class User
 				$sql = "
 					INSERT INTO users
 					SET
-						first_name=\"{$user['first_name']}\",
-						middle_name=\"{$user['middle_name']}\",
-						last_name=\"{$user['last_name']}\",
-						email=\"{$user['email']}\",
-						pass=\"{$user['pass']}\",
-						birthdate=\"{$user['birthdate']}\",
-						gender=\"{$user['gender']}\",
-						address=\"{$user['address']}\",
-						contact_number=\"{$user['contact_number']}\"
+						first_name= \"{$user['first_name']}\",
+						middle_name= \"{$user['middle_name']}\",
+						last_name= \"{$user['last_name']}\",
+						email= \"{$user['email']}\",
+						password= \"{$password}\",
+						birthdate= \"{$user['birthdate']}\",
+						gender= \"{$user['gender']}\",
+						address= \"{$user['address']}\",
+						contact_number= \"{$user['contact_number']}\"
 				";
 				$conn->exec($sql);
 				// echo "<li>Executed SQL query " . $sql;
